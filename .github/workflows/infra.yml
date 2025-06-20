@@ -1,12 +1,13 @@
-#give me workflow to do terraform init, lint , plan & apply
 name: Terraform Workflow
+
 on:
   push:
     branches:
       - main
-      paths:
-        - 'infra/**' # Trigger on changes in the infra directory
-  workflow_dispatch: # manual trigger
+    paths:
+      - 'infra/**' # Trigger on changes in the infra directory
+  workflow_dispatch: # Enables manual trigger
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -25,8 +26,10 @@ jobs:
 
     - name: Terraform Lint
       run: terraform fmt -check
+
     - name: Terraform Plan  
       run: terraform plan
+
     - name: Terraform Apply
       run: terraform apply -auto-approve
       env:
