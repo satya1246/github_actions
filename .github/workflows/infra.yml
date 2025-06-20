@@ -23,7 +23,7 @@ jobs:
 
     - name: Terraform Init
       run:  |
-        cd infra
+        cd infra/modules/VPC
         terraform init
 
     - name: Terraform Lint
@@ -31,12 +31,12 @@ jobs:
 
     - name: Terraform Plan  
       run: |
-        cd infra
+        cd infra/modules/VPC
         terraform plan
 
     - name: Terraform Apply
       run: |
-        cd infra
+        cd infra/modules/VPC
         terraform apply -auto-approve
       env:
         TF_VAR_aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
