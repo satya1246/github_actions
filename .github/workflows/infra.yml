@@ -1,0 +1,35 @@
+#give me workflow to do terraform init, lint , plan & apply
+name: Terraform Workflow
+on:
+  push:
+    branches:
+      - main
+      patterns:
+        - 'infra/**' # Trigger on changes in the infra directory
+  workflow_dispatch: # manual trigger
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.5.0
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Lint
+      run: terraform fmt -check
+    - name: Terraform Plan  
+      run: terraform plan
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      env:
+        TF_VAR_aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        TF_VAR_aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        TF_VAR_region: us-east-1
