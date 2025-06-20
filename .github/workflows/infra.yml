@@ -25,7 +25,6 @@ jobs:
       run:  |
         cd infra
         terraform init
-      terraform init
 
     - name: Terraform Lint
       run: terraform fmt -check
