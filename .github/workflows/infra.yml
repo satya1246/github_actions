@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'infra/**' # Trigger on changes in the infra directory
+      - '.github/workflows/infra.yml'
   workflow_dispatch: # Enables manual trigger
 
 jobs:

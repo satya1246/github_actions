@@ -89,9 +89,11 @@ resource "aws_nat_gateway" "nat_gateway" {
         },
         var.tags
     )
+    depends_on = [ aws_eip.eip ]
 }
 
 resource "aws_eip" "eip" {
+    domain = "vpc"
 
 
     tags = merge(
@@ -103,7 +105,7 @@ resource "aws_eip" "eip" {
 resource "aws_eip_association" "to_nat" {
     allocation_id = aws_eip.eip.id
     instance_id = aws_nat_gateway.nat_gateway.id
-    
+
 
 
 }
