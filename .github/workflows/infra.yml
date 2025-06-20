@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      patterns:
+      paths:
         - 'infra/**' # Trigger on changes in the infra directory
   workflow_dispatch: # manual trigger
 jobs:
