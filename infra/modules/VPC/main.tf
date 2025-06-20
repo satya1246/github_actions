@@ -80,32 +80,31 @@ resource "aws_route_table_association" "private_subnet_association" {
     route_table_id = aws_route_table.private_route_table.id
 }
 
-resource "aws_nat_gateway" "nat_gateway" {
-    allocation_id = aws_eip.nat_eip.id
-    subnet_id = aws_subnet.public-subnet.id
-    tags = merge(
-        {
-            Name = "${var.vpc_name}-nat-gateway"
-        },
-        var.tags
-    )
-    depends_on = [ aws_eip.eip ]
-}
+# resource "aws_nat_gateway" "nat_gateway" {
+#     subnet_id = aws_subnet.public-subnet.id
+#     tags = merge(
+#         {
+#             Name = "${var.vpc_name}-nat-gateway"
+#         },
+#         var.tags
+#     )
+#     public_ip = aws_eip.eip.id
+# }
 
-resource "aws_eip" "eip" {
-    domain = "vpc"
-
-
-    tags = merge(
-        {
-        Name = "${var.vpc_name}-eip"
-        },)
-}
-
-resource "aws_eip_association" "to_nat" {
-    allocation_id = aws_eip.eip.id
-    instance_id = aws_nat_gateway.nat_gateway.id
+# resource "aws_eip" "eip" {
+#     domain = "vpc"
 
 
+#     tags = merge(
+#         {
+#         Name = "${var.vpc_name}-eip"
+#         },)
+# }
 
-}
+# resource "aws_eip_association" "to_nat" {
+#     allocation_id = aws_eip.eip.id
+#     instance_id = aws_nat_gateway.nat_gateway.id
+
+
+
+# }
