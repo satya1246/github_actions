@@ -1,4 +1,4 @@
-vpc_cidr_block = "10.3.0.1/16"
+vpc_cidr_block = "10.3.0.0/16"
 tags = {
   Environment = "dev"
   Project     = "example-project"
