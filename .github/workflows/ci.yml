@@ -18,7 +18,8 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-
+    - name: Set Maven Wrapper Executable Permission
+      run: chmod +x backend/mvnw
     - name: Build JAR File
       run: |
         cd backend
